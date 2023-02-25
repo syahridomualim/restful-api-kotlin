@@ -14,17 +14,17 @@ class EmployeeServiceImpl @Autowired constructor(
         return employeeRepository.save(employee)
     }
 
-    override fun getEmployee(id: Int): Employee {
+    override fun getEmployee(id: Long): Employee {
         return employeeRepository.findById(id).orElseThrow{
             NoSuchElementException("employee doesn't exist")
         }
     }
 
-    override fun getEmployees(): List<Employee> {
+    override fun getEmployees(): List<Employee>? {
         return employeeRepository.findAll()
     }
 
-    override fun editEmployee(id: Int, name: String, email: String, address: String): Employee {
+    override fun editEmployee(id: Long, name: String, email: String, address: String): Employee {
         val employee = employeeRepository.findById(id).orElseThrow {
             NoSuchElementException("employee doesn't exist")
         }
@@ -37,7 +37,7 @@ class EmployeeServiceImpl @Autowired constructor(
         return employeeRepository.save(employee)
     }
 
-    override fun deleteEmployee(id: Int) {
+    override fun deleteEmployee(id: Long) {
         employeeRepository.deleteById(id)
     }
 }
